@@ -1,20 +1,33 @@
 # 📰 Fake News Detection using NLP
 
-## 🚀 Features
-- 98.64% Accuracy
-- Fake vs Real classification
-- Confidence score
-- Suspicious word detection
-- Confusion matrix & report
-- Dark mode UI
+## 🚀 Project Overview
+This project is an AI-powered Fake News Detection system that classifies news as **Fake or Real** using Natural Language Processing (NLP) techniques.
+
+---
+
+## ✨ Features
+- 🎯 98.64% Accuracy
+- 🧠 TF-IDF + Logistic Regression
+- 📊 Confidence Score Visualization
+- 🚨 Suspicious Word Detection
+- 📉 Confusion Matrix & Classification Report
+- 🌙 Dark Mode UI
+- 💻 Full Stack Web App (Flask)
+
+---
 
 ## 🛠️ Tech Stack
 - Python
 - Flask
 - Scikit-learn
-- HTML, CSS
+- Pandas
+- HTML, CSS, JavaScript
+
+---
 
 ## ▶️ How to Run
-1. pip install -r requirements.txt
-2. python train.py
-3. python app.py
+
+```bash
+pip install -r requirements.txt
+python train.py
+python app.py
