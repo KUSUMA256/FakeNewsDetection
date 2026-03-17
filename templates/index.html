@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Fake News Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<button onclick="toggleDarkMode()" id="darkBtn">🌙 Dark Mode</button>
+
+<h1>📰 AI Fake News Detector</h1>
+
+<p>🎯 Model Accuracy: {{ accuracy }}%</p>
+
+<form action="/predict" method="post">
+    <textarea name="news" placeholder="Enter news text..." required></textarea><br>
+    <button type="submit">Check News</button>
+</form>
+
+<div id="loader">🔄 Analyzing...</div>
+
+{% if result %}
+<div class="result-box {{ 'fake-border' if result == 'Fake News' else 'real-border' }}">
+
+    <h2 class="{{ 'fake' if result == 'Fake News' else 'real' }}">
+        {{ '🚨 Fake News' if result == 'Fake News' else '✅ Real News' }}
+    </h2>
+
+    <p><b>Confidence:</b> {{ confidence }}%</p>
+
+    <div class="progress-bar">
+        <div class="progress" 
+             style="width: {{ confidence }}%;
+             background: {{ 'green' if confidence > 70 else 'orange' if confidence > 40 else 'red' }};">
+        </div>
+    </div>
+
+    {% if suspicious %}
+        <p>⚠ Suspicious Words: {{ suspicious }}</p>
+    {% endif %}
+
+</div>
+{% endif %}
+
+<hr>
+
+<h2>📊 Model Evaluation</h2>
+
+<h3>Confusion Matrix</h3>
+<pre>{{ cm }}</pre>
+
+<h3>Classification Report</h3>
+<pre>{{ report }}</pre>
+
+<script>
+const form = document.querySelector("form");
+const loader = document.getElementById("loader");
+
+loader.style.display = "none";
+
+form.addEventListener("submit", () => {
+    loader.style.display = "block";
+});
+
+// Dark mode toggle
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+
+    let btn = document.getElementById("darkBtn");
+    if (document.body.classList.contains("dark")) {
+        btn.innerText = "☀ Light Mode";
+    } else {
+        btn.innerText = "🌙 Dark Mode";
+    }
+}
+</script>
+
+</body>
+</html>
